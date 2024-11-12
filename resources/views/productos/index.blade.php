@@ -76,9 +76,17 @@
 
 
                         <td>
-                            <a href="#" class="btn btn-sm btn-danger">
-                                <i class="bi bi-trash-fill"></i>
+                            <a href="{{ route('productos.edit', $producto->id) }}" class="btn btn-sm btn-warning">
+                                <i class="bi bi-pencil-fill"></i>
                             </a>
+
+                            <form action="{{ route('productos.delete', $producto->id) }}" style="display:contents"
+                                method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger btn-sm btnDelete"><i
+                                        class="bi bi-trash-fill"></i></button>
+                            </form>
                         </td>
                     </tr>
 
