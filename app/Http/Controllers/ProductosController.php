@@ -6,6 +6,8 @@ use App\Models\Producto;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Session;
 
 class ProductosController extends Controller
 {
@@ -33,20 +35,22 @@ class ProductosController extends Controller
 
     public function store(Request $request){
 
-        try{
-         $producto= new Producto();
-         $producto->NOMBRE=$request -> NOMBRE;
-         $producto -> DESCRIPCION= $request -> DESCRIPCION;
-         $producto -> save();
+        try {
 
-         return redirect()->action([ProductosController::class, 'index'])
-                                    ->with('success', 'Producto creado exitosamente.');
+            $producto = new Producto();
+            $producto->NOMBRE = $request->NOMBRE;
+            $producto->TIPO = $request->TIPO;
+            $producto->DESCRIPCION = $request->DESCRIPCION;
+            $producto->save();
 
+            Session::flash('message', ['content' => 'Sección agregada con éxito', 'type' => 'success']);
+            return redirect()->action([ProductosController::class, 'index']);
 
-        } catch(Exception $ex){
-            Log::error('Error al crear producto: ' . $ex->getMessage());
-            return redirect()->back()->with('error', 'Hubo un error al crear el producto.');
+        } catch(Exception $ex) {
 
+            Log::error($ex);
+            Session::flash('message', ['content' => 'Ha ocurrido un error', 'type' => 'error']);
+            return redirect()->back();
         }
 
     }

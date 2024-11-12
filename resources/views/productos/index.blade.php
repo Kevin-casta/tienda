@@ -19,7 +19,7 @@
                     Productos
                 </div>
                 <div class="col-md-1">
-                    <a href="" class="btn btn-primary"><i class="bi bi-plus-circle"></i></a>
+                    <a href="{{ route('productos.create') }}" class="btn btn-primary"><i class="bi bi-plus-circle"></i></a>
                 </div>
             </div>
         </div>
