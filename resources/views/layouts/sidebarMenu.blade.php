@@ -31,18 +31,19 @@
       <li class="nav-heading">Pages</li>
 
       <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('productos.index')}}">
+          <i class="bi bi-person"></i>
+          <span>Productos</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
         <a class="nav-link collapsed" href="users-profile.html">
           <i class="bi bi-person"></i>
           <span>Profile</span>
         </a>
       </li><!-- End Profile Page Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-contact.html">
-          <i class="bi bi-envelope"></i>
-          <span>Contact</span>
-        </a>
-      </li><!-- End Contact Page Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="pages-register.html">

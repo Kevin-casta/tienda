@@ -6,12 +6,25 @@ use App\Models\Producto;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Session;
 
 class ProductosController extends Controller
 {
-    public function index(){
-        $producto = Producto::all();
-        return view('productos/index', ['producto' => $producto ]);
+    public function index(Request $request){
+        if(!empty($request ->records_per_page)){
+            $request -> records_per_page = $request ->records_per_page <= env('PAGINATION_MAX_SIZE') ? $request -> records_per_page
+                                                                                                       :env('PAGINATION_MAX_SIZE');
+
+        } else{
+            $request -> records_per_page = env('PAGINATION_DEFAULT_SIZE');
+        }
+
+        $productos=Producto::where('NOMBRE', 'LIKE', '%' . $request->filter . '%')
+                        ->paginate($request -> records_per_page);
+
+        return view('productos/index', ['productos' => $productos,
+                                        'data'=> $request]);
 
     }
 
@@ -22,20 +35,22 @@ class ProductosController extends Controller
 
     public function store(Request $request){
 
-        try{
-         $producto= new Producto();
-         $producto->NOMBRE=$request -> NOMBRE;
-         $producto -> DESCRIPCION= $request -> DESCRIPCION;
-         $producto -> save();
+        try {
 
-         return redirect()->action([ProductosController::class, 'index'])
-                                    ->with('success', 'Producto creado exitosamente.');
+            $producto = new Producto();
+            $producto->NOMBRE = $request->NOMBRE;
+            $producto->TIPO = $request->TIPO;
+            $producto->DESCRIPCION = $request->DESCRIPCION;
+            $producto->save();
 
+            Session::flash('message', ['content' => 'Sección agregada con éxito', 'type' => 'success']);
+            return redirect()->action([ProductosController::class, 'index']);
 
-        } catch(Exception $ex){
-            Log::error('Error al crear producto: ' . $ex->getMessage());
-            return redirect()->back()->with('error', 'Hubo un error al crear el producto.');
+        } catch(Exception $ex) {
 
+            Log::error($ex);
+            Session::flash('message', ['content' => 'Ha ocurrido un error', 'type' => 'error']);
+            return redirect()->back();
         }
 
     }
@@ -44,8 +59,15 @@ class ProductosController extends Controller
 
         $producto=Producto::find($id);
 
+        if (empty($producto)) {
+
+            Session::flash('message', ['content' => "El producto con id '$id' no existe.", 'type' => 'error']);
+            return redirect()->back();
+        }
+
         return view('productos/edit', ['producto' => $producto]);
     }
+
 
     public function update(Request $request){
 
@@ -56,17 +78,19 @@ class ProductosController extends Controller
          if (!$producto) {
             return redirect()->back()->with('error', 'Producto no encontrado.');
         }
-         $producto->NOMBRE=$request -> NOMBRE;
-         $producto -> DESCRIPCION= $request -> DESCRIPCION;
+        $producto->NOMBRE = $request->NOMBRE;
+        $producto->TIPO = $request->TIPO;
+        $producto->DESCRIPCION = $request->DESCRIPCION;
          $producto -> save();
 
-         return redirect()->action([ProductosController::class, 'index'])
-                                    ->with('success', 'Producto creado exitosamente.');
+         Session::flash('message', ['content' => 'Producto actualizado con éxito', 'type' => 'success']);
+            return redirect()->action([ProductosController::class, 'index']);
 
 
         } catch(Exception $ex){
-            Log::error('Error al editar producto: ' . $ex->getMessage());
-            return redirect()->back()->with('error', 'Hubo un error al editar el producto.');
+            Log::error($ex);
+            Session::flash('message', ['content' => 'Ha ocurrido un error', 'type' => 'error']);
+            return redirect()->back();
 
         }
 
