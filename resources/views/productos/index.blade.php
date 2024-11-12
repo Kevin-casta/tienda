@@ -1,44 +1,95 @@
 @extends('layouts.app')
 @section('content')
 
+<div class="pagetitle">
     <h1>Productos</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item active">Productos</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
 
-    <a href="{{route('productos.create')}}" class="btn btn-primary">Agregar Producto</a>
+  <section class="section">
+    <div class="card">
+        <div class="car-header py-3">
+            <div class="row">
+                <div class="m-0 font-weight-bold text-primary col-md-11">
+                    Productos
+                </div>
+                <div class="col-md-1">
+                    <a href="" class="btn btn-primary"><i class="bi bi-plus-circle"></i></a>
+                </div>
+            </div>
+        </div>
 
-    <table class="table table-bordered mt-3" >
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>NOMBRE</th>
-                <th>DESCRIPCION</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
+        <div class="card-body">
+            <form action="{{route('productos.index')}}" class="navbar-search" method="GET">
 
-        <tbody>
+                <div class="row mt-3">
+                    <div class="col-md-auto">
+                        <select name="records_per_page" class="form-select bg-light border-0 small" value="{{$data ->records_per_page}}">
+                            <option value="{{ $data -> records_per_page == 10 ? 'selected' : ''}}">10</option>
+                            <option value="{{ $data -> records_per_page == 15 ? 'selected' : ''}}">15</option>
+                            <option value="{{ $data -> records_per_page == 30 ? 'selected' : ''}}">30</option>
+                            <option value="{{ $data -> records_per_page == 50 ? 'selected' : ''}}">50</option>
 
-            @foreach ($producto as $productos )
+                        </select>
+                    </div>
+                    <div class="col-md-11">
+                        <div class="input-group-mb-3">
+                            <input type="text"
+                                    class="form-control bg-light border-0 small"
+                                    placeholder="Buscar..."
+                                    aria-label="search"
+                                    name="filter"
+                                    value="{{ $data -> filter}}">
+                            <div class="input group-append">
+                                <button class="btn btn-primary">
+                                    <i class="bi bi-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
 
-            <tr>
+            <table class="table table-bordered">
+                <thead>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Tipo</th>
+                    <th>Stock</th>
+                    <th>Descripcion</th>
+                </thead>
 
-                <td>{{$productos->ID}}</td>
-                <td>{{$productos->NOMBRE}}</td>
-                <td>{{$productos->DESCRIPCION}}</td>
-                <td>
-                    <a href="{{ route('productos.edit', $productos ->id)}}" class="btn btn-warning">EDITAR</a>
-                    <form method="POST" action="{{route('productos.delete', $productos -> id)}}">
-                        @csrf
-                        @method('DELETE')
-                        <button  class="btn btn-danger btnDelete">Eliminar</button>
+                <tbody>
+                    @foreach ($productos as $producto  )
+                    <tr>
+                        <td>{{ $producto -> id}}</td>
+                        <td>{{ $producto -> NOMBRE}}</td>
+                        <td>{{ $producto -> TIPO}}</td>
+                        <td>{{ $producto -> STOCK}}</td>
+                        <td>{{ $producto -> DESCRIPCION}}</td>
 
-                    </form>
-                </td>
 
-            @endforeach
-            </tr>
-        </tbody>
+                        <td>
+                            <a href="#" class="btn btn-sm btn-danger">
+                                <i class="bi bi-trash-fill"></i>
+                            </a>
+                        </td>
+                    </tr>
 
-    </table>
+                    @endforeach
+                </tbody>
+            </table>
+
+            {{ $productos->appends(request()->except('page'))->links() }}
+        </div>
+
+    </div>
+  </section>
 
 
 @endsection
