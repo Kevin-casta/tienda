@@ -7,7 +7,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/productos',[ProductosController::class, 'index']);
+include('web/productos.php');
+
 Route::get('/productos/create',[ProductosController::class, 'create'])->name('productos.create');
 Route::post('/productos/create',[ProductosController::class, 'store'])->name('productos.store');
 Route::get('/productos/edit/{id}',[ProductosController::class, 'edit'])->name('productos.edit');

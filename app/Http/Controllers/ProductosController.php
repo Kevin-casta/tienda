@@ -9,9 +9,20 @@ use Illuminate\Support\Facades\Log;
 
 class ProductosController extends Controller
 {
-    public function index(){
-        $producto = Producto::all();
-        return view('productos/index', ['producto' => $producto ]);
+    public function index(Request $request){
+        if(!empty($request ->records_per_page)){
+            $request -> records_per_page = $request ->records_per_page <= env('PAGINATION_MAX_SIZE') ? $request -> records_per_page
+                                                                                                       :env('PAGINATION_MAX_SIZE');
+
+        } else{
+            $request -> records_per_page = env('PAGINATION_DEFAULT_SIZE');
+        }
+
+        $productos=Producto::where('NOMBRE', 'LIKE', '%' . $request->filter . '%')
+                        ->paginate($request -> records_per_page);
+
+        return view('productos/index', ['productos' => $productos,
+                                        'data'=> $request]);
 
     }
 
