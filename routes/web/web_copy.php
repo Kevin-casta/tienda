@@ -9,8 +9,4 @@ Route::get('/', function () {
 
 include('web/productos.php');
 
-Route::get('/productos/create',[ProductosController::class, 'create'])->name('productos.create');
-Route::post('/productos/create',[ProductosController::class, 'store'])->name('productos.store');
-Route::get('/productos/edit/{id}',[ProductosController::class, 'edit'])->name('productos.edit');
-Route::put('/productos/edit',[ProductosController::class, 'update'])->name('productos.update');
-Route::delete('/productos/delete/{id}',[ProductosController::class, 'delete'])->name('productos.delete');
+
