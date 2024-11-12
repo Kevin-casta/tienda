@@ -86,7 +86,10 @@
                 </tbody>
             </table>
 
-            {{ $productos->appends(request()->except('page'))->links() }}
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+
+            {{ $productos->appends(request()->except('page'))->links('components.customPagination') }}
         </div>
 
     </div>
