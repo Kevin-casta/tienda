@@ -37,6 +37,13 @@
         </a>
       </li><!-- End Profile Page Nav -->
 
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('facturas.store')}}">
+            <i class="bi bi-cash-coin"></i>
+          <span>Nueva Venta</span>
+        </a>
+      </li>
+
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('productos.index')}}">
