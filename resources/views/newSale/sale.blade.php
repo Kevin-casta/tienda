@@ -19,22 +19,23 @@
 
                 <h5 class="card-title">Nueva Venta</h5>
 
-                <form action="{{ route('det_facturas.store') }}" class="row g-3" method="POST">
+                <form action="{{ route('facturas.store') }}" class="row g-3" method="POST">
                     @csrf
 
+                    <!-- Productos -->
                     <div class="col-md-12">
                         <div class="form-floating">
-                            <select class="form-select" aria-label="Default select example">
-                                @foreach ($categorias as $categoria )
+                            <select class="form-select" aria-label="Default select example" name="productos_id">
                                 <option selected>Seleccione un producto</option>
+                                @foreach ($categorias as $categoria )
                                 <option value="{{$categoria->id}}">{{$categoria->category_name}}</option>
                                 @endforeach
-                              </select>
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-floating">
-                            <input type="text" class="form-control" placeholder="Producto" name="id_producto" >
+                            <input type="text" class="form-control" placeholder="Producto" name="precio_unit" >
                             <label>precio</label>
                         </div>
                     </div>
@@ -45,23 +46,25 @@
                         </div>
                     </div>
 
-                </form>
-                <form action="{{ route('facturas.store') }}" class="row g-3" method="POST">
-                    @csrf
-
+                    <!-- Clientes -->
                     <div class="col-md-12">
                         <div class="form-floating">
-                            <input type="text" class="form-control" placeholder="Producto" name="total" >
-                            <label>total</label>
+                            <select class="form-select" aria-label="Default select example" name="clientes_id">
+                                <option selected>Seleccione un cliente</option>
+                                <option value="0">NO REGISTRA</option>
+                                @foreach ($clientes as $cliente )
+                                <option value="{{$cliente->id}}">{{$cliente->NOMBRE}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
 
+                    <!-- Botones -->
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <a href="{{ route('facturas.create')}}" class="btn btn-secondary">Volver</a>
+                    </div>
                 </form>
-
-                <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Guardar</button>
-                    <a href="#" class="btn btn-secondary">Volver</a>
-                </div>
 
             </div>
         </div>
