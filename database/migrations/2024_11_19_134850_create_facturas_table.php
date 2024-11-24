@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('facturas', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('total');
-            $table->unsignedBigInteger('users_id');
-            $table->unsignedBigInteger('clientes_id');
+            $table->integer('total')->nullable();
+            $table->unsignedBigInteger('users_id') ->nullable();
+            $table->unsignedBigInteger('clientes_id') ->nullable();
 
             $table -> foreign('users_id')->references('id')->on('users');
             $table -> foreign('clientes_id')->references('id')->on('clientes');

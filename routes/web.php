@@ -1,9 +1,11 @@
 <?php
 use App\Http\Controllers\Cat_prodController;
+use App\Http\Controllers\Det_FactController;
 use App\Http\Controllers\FacturasController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductosController;
+use App\Models\detalle_factura;
 use Pest\Plugins\Profile;
 
 //Route::get('/dashboard', function () {
@@ -28,7 +30,7 @@ Route::put('/productos/edit',[ProductosController::class, 'update'])->name('prod
 Route::delete('/productos/delete/{id}',[ProductosController::class, 'delete'])->name('productos.delete');
 
 
-Route::get('/categoria',[Cat_prodController::class, 'index']);
+Route::get('/categoria',[Cat_prodController::class, 'index'])->name('categoria.index');;
 Route::get('/categoria/create',[Cat_prodController::class, 'create'])->name('categoria.create');
 Route::post('/categoria/create',[Cat_prodController::class, 'store'])->name('categoria.store');
 Route::get('/categoria/edit/{id}',[Cat_prodController::class, 'edit'])->name('categoria.edit');
@@ -36,8 +38,14 @@ Route::put('/categoria/edit',[Cat_prodController::class, 'update'])->name('categ
 Route::delete('/categoria/delete/{id}',[Cat_prodController::class, 'delete'])->name('categoria.delete');
 
 
-Route::get('/newSale/sale',[FacturasController::class, 'create'])->name('facturas.create');
-Route::post('/newSale/sale',[FacturasController::class, 'store'])->name('facturas.store');
+
+Route::post('/newSale/store',[FacturasController::class, 'store'])->name('facturas.store');
+
+Route::get('/newSale/sale',[Det_FactController::class, 'create'])->name('facturas.create');
+Route::post('/newSale/detalle',[Det_FactController::class, 'store'])->name('det_facturas.store');
+
+
+
 
 Route::get('/users-profile/index',[ProfileController::class, 'index'])->name('users.index');
 
