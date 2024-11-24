@@ -3,8 +3,7 @@ use App\Http\Controllers\Cat_prodController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductosController;
-
-
+use Pest\Plugins\Profile;
 
 //Route::get('/dashboard', function () {
   //  return view('dashboard');
@@ -32,5 +31,6 @@ Route::post('/categoria/create',[Cat_prodController::class, 'store'])->name('cat
 Route::get('/categoria/edit/{id}',[Cat_prodController::class, 'edit'])->name('categoria.edit');
 Route::put('/categoria/edit',[Cat_prodController::class, 'update'])->name('categoria.update');
 Route::delete('/categoria/delete/{id}',[Cat_prodController::class, 'delete'])->name('categoria.delete');
+Route::get('/users-profile/index',[ProfileController::class, 'index'])->name('users.index');
 
 

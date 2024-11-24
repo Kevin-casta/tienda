@@ -3,14 +3,33 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Pest\Plugins\Profile;
 
 class ProfileController extends Controller
 {
+
+    public function index(Request $request){
+        if(!empty($request ->records_per_page)){
+            $request -> records_per_page = $request ->records_per_page <= env('PAGINATION_MAX_SIZE') ? $request -> records_per_page
+                                                                                                       :env('PAGINATION_MAX_SIZE');
+
+        } else{
+            $request -> records_per_page = env('PAGINATION_DEFAULT_SIZE');
+        }
+
+        $users=User::where('first_name', 'LIKE', '%' . $request->filter . '%')
+                        ->paginate($request -> records_per_page);
+
+        return view('users-profile/index', ['users' => $users,
+                                        'data'=> $request]);
+
+    }
     /**
      * Display the user's profile form.
      */
