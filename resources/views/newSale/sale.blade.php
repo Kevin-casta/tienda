@@ -19,7 +19,7 @@
 
                 <h5 class="card-title">Nueva Venta</h5>
 
-                <form action="{{ route('facturas.store') }}" class="row g-3" method="POST">
+                <form action="{{ route('det_facturas.store') }}" class="row g-3" method="POST">
                     @csrf
 
                     <!-- Productos -->
