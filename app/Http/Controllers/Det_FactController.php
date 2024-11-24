@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\categoria_prod;
+use App\Models\Cliente;
 use App\Models\detalle_factura;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -15,10 +16,11 @@ class Det_FactController extends Controller
 {
     public function create(){
         $categorias=categoria_prod::all();
-        return view('newSale/sale', compact('categorias'));
+        $clientes=Cliente::all();
+        return view('newSale/sale', compact('categorias'), compact('clientes') );
     }
 
-    /*public function store(Request $request){
+    public function store(Request $request){
 
         try {
 
@@ -28,7 +30,7 @@ class Det_FactController extends Controller
             $factura->total = $request->total;
             $factura->save();
 
-            Session::flash('message', ['content' => 'Factura agregada con éxito', 'type' => 'success']);
+            Session::flash('message', ['content' => 'Detalle de Factura agregada con éxito', 'type' => 'success']);
             return redirect()->action([facturasController::class, 'index']);
 
         } catch(Exception $ex) {
@@ -37,5 +39,5 @@ class Det_FactController extends Controller
             Session::flash('message', ['content' => 'Ha ocurrido un error', 'type' => 'error']);
             return redirect()->back();
         }
-    }*/
+    }
  }
