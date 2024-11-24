@@ -14,6 +14,11 @@ return new class extends Migration
         Schema::create('descuentos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->unsignedBigInteger('categoria_id');
+            $table->float("porcentaje");
+
+            $table -> foreign('categoria_id')->references('id')->on('categoria_prods');
+
         });
     }
 
