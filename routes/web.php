@@ -5,6 +5,7 @@ use App\Http\Controllers\FacturasController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductosController;
+use App\Http\Controllers\PromocionController;
 use App\Models\detalle_factura;
 use Pest\Plugins\Profile;
 
@@ -22,6 +23,7 @@ require __DIR__.'/auth.php';
 
 include('web/home.php');
 include('web/productos.php');
+include('web/promocions.php');
 
 Route::get('/productos/create',[ProductosController::class, 'create'])->name('productos.create');
 Route::post('/productos/create',[ProductosController::class, 'store'])->name('productos.store');
@@ -29,6 +31,11 @@ Route::get('/productos/edit/{id}',[ProductosController::class, 'edit'])->name('p
 Route::put('/productos/edit',[ProductosController::class, 'update'])->name('productos.update');
 Route::delete('/productos/delete/{id}',[ProductosController::class, 'delete'])->name('productos.delete');
 
+Route::get('/promocions/create',[PromocionController::class, 'create'])->name('promocions.create');
+Route::post('/promocions/create',[PromocionController::class, 'store'])->name('promocions.store');
+Route::get('/promocions/edit/{id}',[PromocionController::class, 'edit'])->name('promocions.edit');
+Route::put('/promocions/edit',[PromocionController::class, 'update'])->name('promocions.update');
+Route::delete('/promocions/delete/{id}',[PromocionController::class, 'delete'])->name('promocions.delete');
 
 Route::get('/categoria',[Cat_prodController::class, 'index'])->name('categoria.index');;
 Route::get('/categoria/create',[Cat_prodController::class, 'create'])->name('categoria.create');
