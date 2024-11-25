@@ -53,9 +53,16 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('productos.index')}}">
+        <a class="nav-link collapsed" href="{{ route('categoria.index')}}">
             <i class="bi bi-star-fill"></i>
           <span>Categorias</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('descuento.index')}}">
+            <i class="bi bi-star-fill"></i>
+          <span>Descuentos</span>
         </a>
       </li>
 
@@ -67,7 +74,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('productos.index')}}">
+        <a class="nav-link collapsed" href="{{ route('cliente.index')}}">
             <i class="bi bi-people"></i>
           <span>Clientes</span>
         </a>

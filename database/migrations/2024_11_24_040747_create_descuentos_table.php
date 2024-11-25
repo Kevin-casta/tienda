@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->unsignedBigInteger('categoria_id');
+            $table->string('descripcion',64);
             $table->float("porcentaje");
 
             $table -> foreign('categoria_id')->references('id')->on('categoria_prods');

@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\categoria_prod;
+use App\Models\Cliente;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 
-class Cat_prodController extends Controller
+class ClienteController extends Controller
 {
     public function index(Request $request){
         if(!empty($request ->records_per_page)){
@@ -20,41 +20,41 @@ class Cat_prodController extends Controller
             $request -> records_per_page = env('PAGINATION_DEFAULT_SIZE');
         }
 
-        $categorias=categoria_prod::where('category_name', 'LIKE', '%' . $request->filter . '%')
+        $clientes=Cliente::where('NOMBRE', 'LIKE', '%' . $request->filter . '%')
                         ->paginate($request -> records_per_page);
 
-        return view('categoria/index', ['categorias' => $categorias,
+        return view('cliente/index', ['clientes' => $clientes,
                                         'data'=> $request]);
 
     }
 
     public function create(){
 
-        return view('categoria/create');
+        return view('cliente/create');
     }
 
     public function store(Request $request){
 
         Validator::make($request->all(),[
-            'category_name' => 'required',
-            'descripcion' => 'required'
+            'NOMBRE' => 'required',
+            'TELEFONO' => 'required'
         ],
         [
-            'category_name.required' => 'El nombre es requerido',
-            'descripcion.required' => 'La descripcion es requerido',
+            'NOMBRE.required' => 'El nombre es requerido',
+            'TELEFONO.required' => 'El telefono es requerido',
 
         ]
         )->validate();
 
         try {
 
-            $categoria = new categoria_prod();
-            $categoria->category_name = $request->category_name;
-            $categoria->descripcion = $request->descripcion;
-            $categoria->save();
+            $cliente = new Cliente();
+            $cliente->NOMBRE = $request->NOMBRE;
+            $cliente->TELEFONO = $request->TELEFONO;
+            $cliente->save();
 
             Session::flash('message', ['content' => 'Sección agregada con éxito', 'type' => 'success']);
-            return redirect()->action([Cat_prodController::class, 'index']);
+            return redirect()->action([ClienteController::class, 'index']);
 
         } catch(Exception $ex) {
 
@@ -64,46 +64,45 @@ class Cat_prodController extends Controller
         }
 
     }
-
     public function edit($id){
 
-        $categoria=categoria_prod::find($id);
+        $cliente=Cliente::find($id);
 
-        if (empty($categoria)) {
+        if (empty($cliente)) {
 
-            Session::flash('message', ['content' => "la categoria con id '$id' no existe.", 'type' => 'error']);
+            Session::flash('message', ['content' => "el cliente con id '$id' no existe.", 'type' => 'error']);
             return redirect()->back();
         }
 
-        return view('categoria/edit', ['categoria' => $categoria]);
+        return view('cliente/edit', ['cliente' => $cliente]);
     }
 
     public function update(Request $request){
 
         Validator::make($request->all(),[
-            'category_name' => 'required',
-            'descripcion' => 'required'
+            'NOMBRE' => 'required',
+            'TELEFONO' => 'required'
         ],
         [
-            'category_name.required' => 'El nombre es requerido',
-            'descripcion.required' => 'La descripcion es requerido',
+            'NOMBRE.required' => 'El nombre es requerido',
+            'TELEFONO.required' => 'El telefono es requerido',
 
         ]
         )->validate();
 
         try{
 
-            $categoria=categoria_prod::find($request->id);
+            $cliente=Cliente::find($request->id);
 
-            if (!$categoria) {
+            if (!$cliente) {
                return redirect()->back()->with('error', 'Producto no encontrado.');
            }
-           $categoria->category_name = $request->category_name;
-           $categoria->descripcion = $request->descripcion;
-           $categoria -> save();
+           $cliente->NOMBRE = $request->NOMBRE;
+           $cliente->TELEFONO = $request->TELEFONO;
+           $cliente -> save();
 
             Session::flash('message', ['content' => 'Producto actualizado con éxito', 'type' => 'success']);
-               return redirect()->action([Cat_prodController::class, 'index']);
+               return redirect()->action([ClienteController::class, 'index']);
 
 
            } catch(Exception $ex){
@@ -117,11 +116,13 @@ class Cat_prodController extends Controller
 
     public function delete($id){
 
-        $categoria=categoria_prod::find($id);
+        $cliente=Cliente::find($id);
 
-        $categoria->delete();
+        $cliente->delete();
 
-        return redirect()->action([Cat_prodController::class, 'index'])
+        return redirect()->action([ClienteController::class, 'index'])
         ->with('success', 'Producto eliminado exitosamente.');
     }
+
+
 }

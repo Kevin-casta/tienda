@@ -8,5 +8,8 @@ Route::get('/', function () {
 });
 
 include('web/productos.php');
+include('web/categoria.php');
+include('web/descuento.php');
+include('web/cliente.php');
 
 
