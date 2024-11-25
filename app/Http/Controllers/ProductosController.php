@@ -43,7 +43,7 @@ class ProductosController extends Controller
             $producto->DESCRIPCION = $request->DESCRIPCION;
             $producto->save();
 
-            Session::flash('message', ['content' => 'Sección agregada con éxito', 'type' => 'success']);
+            Session::flash('message', ['content' => 'Producto agregada con éxito', 'type' => 'success']);
             return redirect()->action([ProductosController::class, 'index']);
 
         } catch(Exception $ex) {

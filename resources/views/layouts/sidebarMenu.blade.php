@@ -38,7 +38,7 @@
       </li><!-- End Profile Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('facturas.store')}}">
+        <a class="nav-link collapsed" href="{{ route('facturas.create')}}">
             <i class="bi bi-cash-coin"></i>
           <span>Nueva Venta</span>
         </a>
@@ -84,6 +84,13 @@
         <a class="nav-link collapsed" href="{{ route('productos.index')}}">
             <i class="bi bi-receipt-cutoff"></i>
           <span>Facturas</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('promocion.index')}}">
+            <i class="bi bi-receipt-cutoff"></i>
+          <span>Promociones Por producto</span>
         </a>
       </li>
 

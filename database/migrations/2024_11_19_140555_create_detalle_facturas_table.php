@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('detalle_facturas', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('cantidad');
-            $table->integer('precio_unit');
-            $table->integer('descuento_aplic');
-            $table->unsignedBigInteger('facturas_id');
-            $table->unsignedBigInteger('productos_id');
+            $table->integer('cantidad')->nullable();
+            $table->integer('precio_unit')->nullable();
+            $table->integer('descuento_aplic')->nullable();
+            $table->unsignedBigInteger('facturas_id')->nullable();
+            $table->unsignedBigInteger('productos_id')->nullable();
 
             $table -> foreign('facturas_id')->references('id')->on('facturas');
             $table -> foreign('productos_id')->references('id')->on('productos');

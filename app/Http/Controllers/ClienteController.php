@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Cliente;
 use Exception;
 use Illuminate\Http\Request;
@@ -123,6 +124,5 @@ class ClienteController extends Controller
         return redirect()->action([ClienteController::class, 'index'])
         ->with('success', 'Producto eliminado exitosamente.');
     }
-
 
 }
