@@ -31,6 +31,7 @@ class Det_FactController extends Controller
             $factura=new Factura();
             $factura->users_id =  Auth::user()->id;
             $factura->clientes_id = $request->clientes_id;
+            $factura->total=$request->total;
             $factura->save();
 
             $det_factura = new detalle_factura();
