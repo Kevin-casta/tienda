@@ -80,6 +80,13 @@
         </a>
       </li>
 
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('promocion.index')}}">
+            <i class="bi bi-receipt-cutoff"></i>
+          <span>Promociones Por producto</span>
+        </a>
+      </li>
+
 
 
 
