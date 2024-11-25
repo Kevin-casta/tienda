@@ -23,7 +23,11 @@ require __DIR__.'/auth.php';
 
 include('web/home.php');
 include('web/productos.php');
+include('web/categoria.php');
+include('web/descuento.php');
+include('web/cliente.php');
 include('web/promocions.php');
+
 
 Route::get('/productos/create',[ProductosController::class, 'create'])->name('productos.create');
 Route::post('/productos/create',[ProductosController::class, 'store'])->name('productos.store');
@@ -31,29 +35,23 @@ Route::get('/productos/edit/{id}',[ProductosController::class, 'edit'])->name('p
 Route::put('/productos/edit',[ProductosController::class, 'update'])->name('productos.update');
 Route::delete('/productos/delete/{id}',[ProductosController::class, 'delete'])->name('productos.delete');
 
+Route::get('/users-profile/index',[ProfileController::class, 'index'])->name('users.index');
+
 Route::get('/promocions/create',[PromocionController::class, 'create'])->name('promocions.create');
 Route::post('/promocions/create',[PromocionController::class, 'store'])->name('promocions.store');
 Route::get('/promocions/edit/{id}',[PromocionController::class, 'edit'])->name('promocions.edit');
 Route::put('/promocions/edit',[PromocionController::class, 'update'])->name('promocions.update');
 Route::delete('/promocions/delete/{id}',[PromocionController::class, 'delete'])->name('promocions.delete');
 
-Route::get('/categoria',[Cat_prodController::class, 'index'])->name('categoria.index');;
-Route::get('/categoria/create',[Cat_prodController::class, 'create'])->name('categoria.create');
-Route::post('/categoria/create',[Cat_prodController::class, 'store'])->name('categoria.store');
-Route::get('/categoria/edit/{id}',[Cat_prodController::class, 'edit'])->name('categoria.edit');
-Route::put('/categoria/edit',[Cat_prodController::class, 'update'])->name('categoria.update');
-Route::delete('/categoria/delete/{id}',[Cat_prodController::class, 'delete'])->name('categoria.delete');
-
-
-
 Route::post('/newSale/store',[FacturasController::class, 'store'])->name('facturas.store');
 
 Route::get('/newSale/sale',[Det_FactController::class, 'create'])->name('facturas.create');
 Route::post('/newSale/detalle',[Det_FactController::class, 'store'])->name('det_facturas.store');
 
+Route::get('/newSale/sale',[FacturasController::class, 'create'])->name('facturas.create');
+Route::post('/newSale/sale',[FacturasController::class, 'store'])->name('facturas.store');
 
 
 
-Route::get('/users-profile/index',[ProfileController::class, 'index'])->name('users.index');
 
 

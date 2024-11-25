@@ -1,6 +1,13 @@
 @extends('layouts.app')
 @section('content')
     <h1> Nueva categoria</h1>
+    <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="{{route('categoria.index')}}">Categorias</a></li>
+          <li class="breadcrumb-item active">Nueva Categoria</li>
+        </ol>
+      </nav>
 
     <form action="{{ route('categoria.store')}}" method="POST">
         @csrf

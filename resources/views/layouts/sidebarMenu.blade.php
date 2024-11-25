@@ -60,6 +60,13 @@
       </li>
 
       <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('descuento.index')}}">
+            <i class="bi bi-star-fill"></i>
+          <span>Descuentos</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('productos.index')}}">
             <i class="bi bi-wallet-fill"></i>
           <span>Inventario</span>
@@ -67,7 +74,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('productos.index')}}">
+        <a class="nav-link collapsed" href="{{ route('cliente.index')}}">
             <i class="bi bi-people"></i>
           <span>Clientes</span>
         </a>

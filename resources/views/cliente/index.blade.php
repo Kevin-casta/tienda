@@ -2,11 +2,11 @@
 @section('content')
 
 <div class="pagetitle">
-    <h1>Categoria</h1>
+    <h1>Clientes</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-        <li class="breadcrumb-item active">Categorias</li>
+        <li class="breadcrumb-item active">Clientes</li>
       </ol>
     </nav>
   </div><!-- End Page Title -->
@@ -16,16 +16,16 @@
         <div class="car-header py-3">
             <div class="row">
                 <div class="m-0 font-weight-bold text-primary col-md-11">
-                    Categorias
+                    Clientes
                 </div>
                 <div class="col-md-1">
-                    <a href="{{ route('categoria.create') }}" class="btn btn-primary"><i class="bi bi-plus-circle"></i></a>
+                    <a href="{{ route('cliente.create') }}" class="btn btn-primary"><i class="bi bi-plus-circle"></i></a>
                 </div>
             </div>
         </div>
 
         <div class="card-body">
-            <form action="{{route('categoria.index')}}" class="navbar-search" method="GET">
+            <form action="{{route('cliente.index')}}" class="navbar-search" method="GET">
 
                 <div class="row mt-3">
                     <div class="col-md-auto">
@@ -63,21 +63,21 @@
                 <thead>
                     <th>Id</th>
                     <th>Nombre</th>
-                    <th>Descripcion</th>
+                    <th>Telefono</th>
                 </thead>
 
                 <tbody>
-                    @foreach ($categorias as $categoria  )
+                    @foreach ($clientes as $cliente  )
                     <tr>
-                        <td>{{ $categoria -> id}}</td>
-                        <td>{{ $categoria -> category_name}}</td>
-                        <td>{{ $categoria -> descripcion}}</td>
+                        <td>{{ $cliente -> id}}</td>
+                        <td>{{ $cliente -> NOMBRE}}</td>
+                        <td>{{ $cliente -> TELEFONO}}</td>
                         <td>
-                            <a href="{{ route('categoria.edit', $categoria->id) }}" class="btn btn-sm btn-warning">
+                            <a href="{{ route('cliente.edit', $cliente->id) }}" class="btn btn-sm btn-warning">
                                 <i class="bi bi-pencil-fill"></i>
                             </a>
 
-                            <form action="{{ route('categoria.delete', $categoria->id) }}" style="display:contents"
+                            <form action="{{ route('cliente.delete', $cliente->id) }}" style="display:contents"
                                 method="POST">
                                 @csrf
                                 @method('DELETE')
@@ -94,7 +94,7 @@
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
 
-            {{ $categorias->appends(request()->except('page'))->links('components.customPagination') }}
+            {{ $clientes->appends(request()->except('page'))->links('components.customPagination') }}
         </div>
 
     </div>
