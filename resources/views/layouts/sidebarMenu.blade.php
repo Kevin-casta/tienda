@@ -67,13 +67,6 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('productos.index')}}">
-            <i class="bi bi-wallet-fill"></i>
-          <span>Inventario</span>
-        </a>
-      </li>
-
-      <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('cliente.index')}}">
             <i class="bi bi-people"></i>
           <span>Clientes</span>

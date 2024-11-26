@@ -6,6 +6,7 @@ use App\Models\categoria_prod;
 use App\Models\Cliente;
 use App\Models\detalle_factura;
 use App\Models\Factura;
+use App\Models\Producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -17,9 +18,9 @@ use Exception;
 class Det_FactController extends Controller
 {
     public function create(){
-        $categorias=categoria_prod::all();
+        $productos=Producto::all();
         $clientes=Cliente::all();
-        return view('newSale/sale', compact('categorias', 'clientes'));
+        return view('newSale/sale', compact('productos', 'clientes'));
     }
 
     public function store(Request $request){

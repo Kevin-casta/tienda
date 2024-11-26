@@ -27,8 +27,8 @@
                     <div class="form-floating">
                         <select class="form-select" aria-label="Default select example" name="productos_id">
                             <option selected>Seleccione un producto</option>
-                            @foreach ($categorias as $categoria )
-                            <option value="{{$categoria->id}}">{{$categoria->category_name}}</option>
+                            @foreach ($productos as $producto )
+                            <option value="{{$producto->id}}">{{$producto->NOMBRE}}</option>
                             @endforeach
                         </select>
                     </div>
