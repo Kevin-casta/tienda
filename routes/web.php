@@ -27,6 +27,7 @@ include('web/categoria.php');
 include('web/descuento.php');
 include('web/cliente.php');
 include('web/promocions.php');
+include('web/facturas.php');
 
 
 Route::get('/productos/create',[ProductosController::class, 'create'])->name('productos.create');
@@ -50,6 +51,7 @@ Route::post('/newSale/detalle',[Det_FactController::class, 'store'])->name('det_
 
 Route::get('/newSale/sale',[FacturasController::class, 'create'])->name('facturas.create');
 Route::post('/newSale/sale',[FacturasController::class, 'store'])->name('facturas.store');
+Route::post('/facturas/delete/{id}',[FacturasController::class, 'delete'])->name('facturas.delete');
 
 
 

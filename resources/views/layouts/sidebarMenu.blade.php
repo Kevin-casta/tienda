@@ -81,7 +81,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('productos.index')}}">
+        <a class="nav-link collapsed" href="{{ route('factura.index')}}">
             <i class="bi bi-receipt-cutoff"></i>
           <span>Facturas</span>
         </a>
