@@ -31,9 +31,14 @@
                     </div>
                     <div class="col-md-12">
                         <div class="form-floating">
-                            <input type="text" class="form-control" placeholder="Producto" name="TIPO"  >
-                            <label>Tipo</label>
+                            <select class="form-select" aria-label="Default select example" name="clientes_id">
+                                <option selected>Seleccione una categoria</option>
+                                @foreach ($categorias as $categoria )
+                                <option value="{{$categoria->id}}">{{$categoria->category_name}}</option>
+                                @endforeach
+                            </select>
                         </div>
+                    </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-floating">

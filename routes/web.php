@@ -49,7 +49,7 @@ Route::post('/newSale/store',[FacturasController::class, 'store'])->name('factur
 Route::get('/newSale/sale',[Det_FactController::class, 'create'])->name('facturas.create');
 Route::post('/newSale/detalle',[Det_FactController::class, 'store'])->name('det_facturas.store');
 
-Route::get('/newSale/sale',[FacturasController::class, 'create'])->name('facturas.create');
+//Route::get('/newSale/sale',[FacturasController::class, 'create'])->name('facturas.create');
 Route::post('/newSale/sale',[FacturasController::class, 'store'])->name('facturas.store');
 Route::post('/facturas/delete/{id}',[FacturasController::class, 'delete'])->name('facturas.delete');
 
