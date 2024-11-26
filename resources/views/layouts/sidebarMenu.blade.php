@@ -61,7 +61,7 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('descuento.index')}}">
-            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-cursor"></i>
           <span>Descuentos</span>
         </a>
       </li>
@@ -89,7 +89,7 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('promocion.index')}}">
-            <i class="bi bi-receipt-cutoff"></i>
+            <i class="bi bi-collection"></i>
           <span>Promociones Por producto</span>
         </a>
       </li>
