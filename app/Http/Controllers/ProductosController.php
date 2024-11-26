@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
+use App\Models\categoria_prod;
 
 class ProductosController extends Controller
 {
@@ -29,8 +30,8 @@ class ProductosController extends Controller
     }
 
     public function create(){
-
-        return view('productos/create');
+        $categorias=categoria_prod::all();
+        return view('productos/create',  compact('categorias'));
     }
 
     public function store(Request $request){
